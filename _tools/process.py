@@ -19,6 +19,9 @@ for root, _, files in os.walk(SITE):
         html = re.sub(r'<link[^>]*framer\.com/edit/init\.mjs[^>]*>', '', html)
         html = re.sub(r'<script[^>]*events\.framer\.com[^>]*>\s*</script>', '', html)
         html = html.replace("</head>", "<style>#__framer-badge-container{display:none!important}</style></head>", 1)
+        html = re.sub(r'<link[^>]*rel="(?:icon|apple-touch-icon)"[^>]*>', '', html)
+        html = re.sub(r'<link rel="apple-touch-icon"[^>]*>', '', html)
+        html = html.replace("</head>", '<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/_icons/favicon-32.png"><link rel="icon" type="image/png" sizes="192x192" href="/_icons/favicon-192.png"><link rel="apple-touch-icon" href="/_icons/apple-touch-icon.png"></head>', 1)
         if DOMAIN:
             html = html.replace("https://fatemiit.framer.website", "https://" + DOMAIN)
         open(fp, "w", encoding="utf-8").write(html)

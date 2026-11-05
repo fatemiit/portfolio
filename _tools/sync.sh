@@ -20,7 +20,7 @@ python3 -I "$ROOT/_tools/process.py" "$TMP/site" "$DOMAIN" >/dev/null
 sed "s#$SRC#https://$DOMAIN#g" "$TMP/sitemap.xml" > "$TMP/site/sitemap.xml"
 printf 'User-agent: *\nAllow: /\nSitemap: https://%s/sitemap.xml\n' "$DOMAIN" > "$TMP/site/robots.txt"
 # replace old pages, keep repo-only files
-find "$ROOT" -mindepth 1 -maxdepth 1 ! -name .git ! -name _tools ! -name CNAME ! -name .nojekyll ! -name 404.html -exec rm -rf {} +
+find "$ROOT" -mindepth 1 -maxdepth 1 ! -name .git ! -name _tools ! -name _icons ! -name favicon.ico ! -name CNAME ! -name .nojekyll ! -name 404.html -exec rm -rf {} +
 cp -r "$TMP/site/." "$ROOT/"
 rm -rf "$TMP"
 echo done
